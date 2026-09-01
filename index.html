@@ -59,16 +59,20 @@
   .hero .range {
     font-size: 15px;
     color: rgba(58,54,48,0.75);
-    margin: 0 0 14px;
+    margin: 0 0 18px;
   }
 
   .hero .sub {
     max-width: 480px;
     margin: 0 auto;
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.7;
     color: rgba(58,54,48,0.85);
+    text-align: left;
   }
+
+  .hero .sub p { margin: 0 0 12px; }
+  .hero .sub p:last-child { margin-bottom: 0; }
 
   .wrap {
     max-width: 620px;
@@ -204,6 +208,45 @@
     font-weight: 600;
   }
 
+  .series-group {
+    margin-top: 14px;
+  }
+  .series-group:first-of-type {
+    margin-top: 10px;
+  }
+
+  .series-group h4 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--gold-deep);
+    margin: 0 0 6px;
+  }
+
+  .cohort-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    padding: 5px 0;
+    border-top: 1px solid var(--sand);
+    font-size: 13px;
+  }
+  .series-group .cohort-row:first-of-type {
+    border-top: none;
+  }
+
+  .cohort-info { line-height: 1.4; }
+  .cohort-info .cohort-name { font-weight: 600; color: var(--ink); }
+  .cohort-info .cohort-meta { color: var(--grey); font-size: 12px; }
+
+  .cohort-row a {
+    flex: 0 0 auto;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
   /* ---------- NEXT WEEK ---------- */
   .next-week {
     background: var(--sand);
@@ -257,7 +300,10 @@
   <span class="hero-eyebrow">What's happening at</span>
   <h1>New Mom School</h1>
   <p class="range">West County Studio · August 31–September 6</p>
-  <p class="sub">Studio details for New Mom School St. Louis West County. Thank you to our amazing Instructors and Visiting Experts who make this experience so much better for our postpartum moms. Thank you so much — you are the heart of the studio!</p>
+  <div class="sub">
+    <p>This page is your weekly hub for everything happening at New Mom School West County — a quick look at what's coming up on the calendar, any special events coming up, and announcements for our team. This communication tool is for our Instructors and Visiting Experts only, so please keep the details here between us.</p>
+    <p>We're so grateful for each and every one of you — you truly are the heart of this studio.</p>
+  </div>
 </div>
 
 <div class="wrap">
@@ -373,6 +419,97 @@
   <div class="announce">
     <p><strong>Referrals &amp; discount codes</strong></p>
     <p>Know a mama who'd be a great fit for NMS? We love referrals from our Instructors and Visiting Experts! If you'd like your own personal referral code to share with clients, friends, or your network, just reach out to Ali directly and she'll get one set up for you.</p>
+  </div>
+
+  <div class="announce">
+    <p><strong>Infant and Newborn Safety Workshop</strong></p>
+    <p>Friday, October 10 · 3:00–5:00 PM</p>
+    <p><a href="https://bitesizedwellness.as.me/new-mom-school" target="_blank" rel="noopener">bitesizedwellness.as.me/new-mom-school →</a></p>
+  </div>
+
+  <div class="announce">
+    <p><strong>Upcoming Class Series</strong></p>
+    <p>Share these with moms who are ready to enroll — links go straight to purchase.</p>
+
+    <div class="series-group">
+      <h4>Newborn (0–3 mos)</h4>
+      <div class="cohort-row">
+        <div class="cohort-info"><span class="cohort-name">August 2026 Babies</span><br><span class="cohort-meta">Tue 10:00–11:30 AM · Sep 22–Nov 10 · Mackenzie</span></div>
+        <a href="https://momence.com/l/DAh68g8P" target="_blank" rel="noopener">Enroll →</a>
+      </div>
+      <div class="cohort-row">
+        <div class="cohort-info"><span class="cohort-name">September 2026 Babies</span><br><span class="cohort-meta">Wed 12:00–1:30 PM · Oct 14–Dec 9 · Chelsea</span></div>
+        <a href="https://momence.com/l/VRhkZ7DV" target="_blank" rel="noopener">Enroll →</a>
+      </div>
+      <div class="cohort-row">
+        <div class="cohort-info"><span class="cohort-name">Late Sept–Early/Mid Oct 2026 Babies</span><br><span class="cohort-meta">Wed 10:00–11:30 AM · Nov 4–Jan 13 · Chelsea</span></div>
+        <a href="https://momence.com/l/g7hq6PyR" target="_blank" rel="noopener">Enroll →</a>
+      </div>
+      <div class="cohort-row">
+        <div class="cohort-info"><span class="cohort-name">Mid/Late October 2026 Babies</span><br><span class="cohort-meta">Tue 10:00–11:30 AM · Nov 24–Jan 26 · Mackenzie</span></div>
+        <a href="https://momence.com/l/ALhmelKa" target="_blank" rel="noopener">Enroll →</a>
+      </div>
+    </div>
+
+    <div class="series-group">
+      <h4>Infant (3–6 mos)</h4>
+      <div class="cohort-row">
+        <div class="cohort-info"><span class="cohort-name">April–June 2026 Babies</span><br><span class="cohort-meta">Sun 10:00–11:30 AM · Sep 13–Nov 1 · Ali</span></div>
+        <a href="https://momence.com/l/g7hbPgl8" target="_blank" rel="noopener">Enroll →</a>
+      </div>
+      <div class="cohort-row">
+        <div class="cohort-info"><span class="cohort-name">April–June 2026 Babies</span><br><span class="cohort-meta">Tue 12:00–1:30 PM · Sep 22–Nov 10 · Mackenzie</span></div>
+        <a href="https://momence.com/l/4ZhQVjQa" target="_blank" rel="noopener">Enroll →</a>
+      </div>
+      <div class="cohort-row">
+        <div class="cohort-info"><span class="cohort-name">June–August 2026 Babies</span><br><span class="cohort-meta">Tue 12:00–1:30 PM · Nov 24–Jan 26 · Mackenzie</span></div>
+        <a href="https://momence.com/l/79hL7AAg" target="_blank" rel="noopener">Enroll →</a>
+      </div>
+    </div>
+
+    <div class="series-group">
+      <h4>Rising Toddler (6–12 mos)</h4>
+      <div class="cohort-row">
+        <div class="cohort-info"><span class="cohort-name">Sept 2025–March 2026 Babies</span><br><span class="cohort-meta">Sat 1:15–2:30 PM · Sep 19–Nov 7 · Stephanie</span></div>
+        <a href="https://momence.com/l/mXhQqqZ9" target="_blank" rel="noopener">Enroll →</a>
+      </div>
+      <div class="cohort-row">
+        <div class="cohort-info"><span class="cohort-name">Sept 2025–March 2026 Babies</span><br><span class="cohort-meta">Sat 11:30 AM–12:45 PM · Sep 19–Nov 7 · Stephanie</span></div>
+        <a href="https://momence.com/l/R5hJq7gW" target="_blank" rel="noopener">Enroll →</a>
+      </div>
+      <div class="cohort-row">
+        <div class="cohort-info"><span class="cohort-name">Sept 2025–March 2026 Babies</span><br><span class="cohort-meta">Thu 12:00–1:15 PM · Sep 24–Nov 12 · Laura</span></div>
+        <a href="https://momence.com/l/WQhRb5EL" target="_blank" rel="noopener">Enroll →</a>
+      </div>
+      <div class="cohort-row">
+        <div class="cohort-info"><span class="cohort-name">Oct 2025–April 2026 Babies</span><br><span class="cohort-meta">Mon 12:00–1:15 PM · Oct 19–Dec 7 · Abby</span></div>
+        <a href="https://momence.com/l/rqhWyr96" target="_blank" rel="noopener">Enroll →</a>
+      </div>
+    </div>
+
+    <div class="series-group">
+      <h4>Second Time Mom (0–3 mos)</h4>
+      <div class="cohort-row">
+        <div class="cohort-info"><span class="cohort-name">Fall 2026 Babies</span><br><span class="cohort-meta">Thu 9:30–11:00 AM · Nov 12–Jan 21 · Ali</span></div>
+        <a href="https://momence.com/l/QQhEJBAr" target="_blank" rel="noopener">Enroll →</a>
+      </div>
+    </div>
+
+    <div class="series-group">
+      <h4>Dad's Weekend Rising Toddler — Drop-In</h4>
+      <div class="cohort-row">
+        <div class="cohort-info"><span class="cohort-name">Week 4 Drop-In — Babbling: Your Toddler's Communication</span><br><span class="cohort-meta">Sat 11:30 AM–12:45 PM · Sep 12, 2026 · Stephanie</span></div>
+        <a href="https://momence.com/l/4ZhQQB9P" target="_blank" rel="noopener">Enroll →</a>
+      </div>
+    </div>
+
+    <div class="series-group">
+      <h4>Breastfeeding Support Group</h4>
+      <div class="cohort-row">
+        <div class="cohort-info"><span class="cohort-name">Breastfeeding Support Group</span><br><span class="cohort-meta">Sep 14, 2026</span></div>
+        <a href="https://momence.com/l/0ehlMK8k" target="_blank" rel="noopener">Enroll →</a>
+      </div>
+    </div>
   </div>
 
   <div class="section-label">Next week, at a glance</div>
