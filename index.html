@@ -1,594 +1,849 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>New Mom School — West County | This Week</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instructor & Visiting Expert Hub</title>
+<meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Avaria+Serif+Libre&family=Beau+Rivage&family=Nunito+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,400&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap">
+
 <style>
+  html, body { margin: 0; padding: 0; }
+  body { font: 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+
   :root {
-    --gold-light: #E8D380;
-    --gold: #E0BA44;
-    --gold-deep: #B38000;
-    --sand: #E9E5DE;
-    --cream: #F6F3EF;
-    --white: #FFFFFF;
-    --ink: #3A3630;
-    --grey: #666666;
+    --paper: #fbf9f3;
+    --surface: #ffffff;
+    --surface-2: #e9e5de;   /* brand: Calm */
+    --surface-3: #dfd8cc;   /* brand: Grounding */
+    --ink: #332711;
+    --ink-soft: #6e6248;
+    --ink-faint: #a39876;
+    --line: #e4decb;
+    --line-deep: #cfc5aa;
+    --accent: #b38000;         /* brand: Warmth */
+    --accent-text: #7a5900;    /* AA-safe text variant of Warmth */
+    --accent-bright: #e0ba44;  /* brand: Sunny */
+    --accent-tint: #f5edd3;    /* light wash of Glow */
+    --on-accent: #2b1d00;
+    color-scheme: light dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1c1608;
+      --surface: #241b0d;
+      --surface-2: #2e2513;
+      --surface-3: #3a2f19;
+      --ink: #f5eedd;
+      --ink-soft: #c9bb98;
+      --ink-faint: #93876a;
+      --line: #443a22;
+      --line-deep: #584a28;
+      --accent: #e0ba44;
+      --accent-text: #f0c860;
+      --accent-bright: #e0ba44;
+      --accent-tint: #3e331b;
+      --on-accent: #2b1d00;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #1c1608;
+    --surface: #241b0d;
+    --surface-2: #2e2513;
+    --surface-3: #3a2f19;
+    --ink: #f5eedd;
+    --ink-soft: #c9bb98;
+    --ink-faint: #93876a;
+    --line: #443a22;
+    --line-deep: #584a28;
+    --accent: #e0ba44;
+    --accent-text: #f0c860;
+    --accent-bright: #e0ba44;
+    --accent-tint: #3e331b;
+    --on-accent: #2b1d00;
   }
 
   * { box-sizing: border-box; }
 
   body {
-    margin: 0;
-    background: var(--cream);
+    background: var(--paper);
     color: var(--ink);
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: "Nunito Sans", -apple-system, "Segoe UI", sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
-  a { color: var(--gold-deep); }
-
-  .hero {
-    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
-    padding: 56px 24px 44px;
-    text-align: center;
-    position: relative;
+  .page {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: clamp(24px, 5vw, 56px) clamp(18px, 4vw, 28px) 64px;
   }
 
-  .stars { position: absolute; top: 18px; left: 0; right: 0; }
-  .star { color: var(--white); opacity: 0.55; }
-  .star.big { font-size: 20px; margin-right: 10px; }
-  .star.small { font-size: 12px; }
+  a { color: var(--accent-text); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-  .hero-eyebrow {
-    font-size: 13px;
-    letter-spacing: 0.02em;
-    color: rgba(58,54,48,0.7);
+  /* ---------- Masthead ---------- */
+  .masthead {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    border-bottom: 2px solid var(--accent-bright);
+    padding-bottom: 22px;
+    margin-bottom: 38px;
   }
 
-  .hero h1 {
-    font-family: 'Avaria Serif Libre', serif;
-    font-size: 40px;
-    margin: 6px 0 4px;
+  .stars {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding-top: 6px;
+  }
+  .stars svg { display: block; }
+  .stars .big { fill: var(--accent-bright); }
+  .stars .small { fill: var(--accent); margin-left: 14px; }
+
+  .eyebrow {
+    margin: 0 0 6px;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+
+  .masthead h1 {
+    font-family: "Averia Serif Libre", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(1.9rem, 3.8vw, 2.6rem);
+    line-height: 1.12;
     color: var(--ink);
+    margin: 0;
+    text-wrap: balance;
   }
 
-  .hero .range {
-    font-size: 15px;
-    color: rgba(58,54,48,0.75);
-    margin: 0 0 18px;
+  .masthead-meta {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 16px;
   }
 
-  .hero .sub {
-    max-width: 480px;
-    margin: 0 auto;
-    font-size: 14px;
-    line-height: 1.7;
-    color: rgba(58,54,48,0.85);
-    text-align: left;
+  .week-range {
+    font-size: 0.82rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    background: var(--accent-tint);
+    color: var(--accent-text);
+    border: 1px solid var(--line-deep);
+    border-radius: 5px;
+    padding: 4px 10px;
   }
 
-  .hero .sub p { margin: 0 0 12px; }
-  .hero .sub p:last-child { margin-bottom: 0; }
-
-  .wrap {
-    max-width: 620px;
-    margin: 0 auto;
-    padding: 40px 24px 60px;
+  .audience-note {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
   }
 
-  .section-label {
-    font-family: 'Avaria Serif Libre', serif;
-    font-size: 20px;
-    color: var(--gold-deep);
-    margin: 44px 0 12px;
+  .confidential-tag {
+    margin: 16px 0 0;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-style: italic;
+    color: var(--accent-text);
   }
-  .section-label.first { margin-top: 0; }
 
-  .day {
-    border-top: 1px solid var(--sand);
-    padding: 16px 0;
+  .masthead-intro {
+    margin: 6px 0 0;
+    max-width: 62ch;
+    font-size: 0.94rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
   }
-  .day:last-of-type { border-bottom: 1px solid var(--sand); }
 
-  .day-head {
+  .masthead-thanks {
+    margin: 10px 0 0;
+    font-family: "Averia Serif Libre", Georgia, serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--accent-text);
+  }
+
+  /* ---------- Section headings ---------- */
+  section { margin-top: 44px; }
+
+  section > h2 {
+    font-family: "Averia Serif Libre", Georgia, serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--ink);
     display: flex;
     align-items: baseline;
-    gap: 10px;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 0 18px;
+    text-wrap: balance;
   }
 
-  .day-name { font-weight: 700; font-size: 16px; }
-  .day-date { font-size: 13px; color: var(--grey); }
-
-  .today-flag {
-    margin-left: auto;
-    background: var(--gold-deep);
-    color: var(--white);
-    font-size: 11px;
-    padding: 3px 9px;
-    border-radius: 20px;
+  section > h2 .range {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
   }
 
-  .class-item {
-    display: flex;
+  /* ---------- Weekly calendar ---------- */
+  .day-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 14px;
-    padding: 6px 0;
   }
 
-  .class-time {
-    flex: 0 0 66px;
-    font-size: 13px;
-    color: var(--grey);
-    padding-top: 2px;
+  .day-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 16px 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
-  .class-series {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--gold-deep);
-    margin-bottom: 2px;
+  .day-card.is-today {
+    border-top-color: var(--accent-bright);
+    background: var(--accent-tint);
   }
 
-  .class-topic {
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 1.3;
-  }
+  .day-card.is-empty { border-top-color: var(--line-deep); }
 
-  .class-presenter {
-    font-size: 14px;
+  .day-card h3 {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
     color: var(--ink);
-    opacity: 0.85;
-    margin-top: 2px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
   }
 
-  .photo-flag {
+  .day-card h3 .date {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .today-pill {
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--on-accent);
+    background: var(--accent-bright);
+    border-radius: 999px;
+    padding: 2px 8px;
+  }
+
+  .sessions {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .session {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+  }
+
+  .sessions .session:first-child { padding-top: 0; border-top: none; }
+
+  .session-time {
+    font-size: 0.74rem;
+    font-weight: 800;
+    color: var(--accent-text);
+    padding-top: 2px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .session-title {
+    margin: 0 0 3px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+
+  .session-people {
+    margin: 0 0 6px;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+  }
+
+  .tag-picture {
     display: inline-block;
-    margin-top: 6px;
-    font-size: 12px;
-    background: var(--sand);
-    padding: 3px 9px;
-    border-radius: 20px;
+    margin-left: 6px;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--on-accent);
+    background: var(--accent-bright);
+    border-radius: 4px;
+    padding: 1px 6px;
+    vertical-align: middle;
   }
 
   .roster-link {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--gold-deep);
+    font-size: 0.76rem;
+    font-weight: 700;
     text-decoration: none;
-    border-bottom: 1px solid var(--gold);
-    margin-top: 6px;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
   }
-  .roster-link:hover { border-bottom-color: var(--gold-deep); }
+  .roster-link:hover { opacity: 0.75; }
 
   .empty-note {
-    font-size: 14px;
-    color: var(--grey);
-    font-style: italic;
     margin: 0;
-  }
-
-  .announce {
-    background: var(--white);
-    border: 1px dashed var(--gold);
-    border-radius: 6px;
-    padding: 22px 22px 24px;
-    margin-top: 8px;
-  }
-
-  .announce p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--ink);
-    margin: 0;
-  }
-
-  .announce p + p { margin-top: 10px; }
-
-  .announce p.placeholder {
-    color: var(--grey);
+    font-size: 0.82rem;
+    color: var(--ink-faint);
     font-style: italic;
   }
 
-  .announce .links {
-    margin-top: 12px;
+  /* ---------- Announcements ---------- */
+  .notice-list {
     display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 12px;
   }
 
-  .announce .links a {
-    font-size: 13px;
-    font-weight: 600;
+  .notice {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 16px 18px;
   }
 
-  .series-group {
-    margin-top: 14px;
-  }
-  .series-group:first-of-type {
-    margin-top: 10px;
-  }
-
-  .series-group h4 {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--gold-deep);
+  .notice h3 {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 0.98rem;
+    font-weight: 800;
+    color: var(--ink);
     margin: 0 0 6px;
   }
 
-  .cohort-row {
+  .notice p {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .notice-highlight {
+    border: 1px solid var(--line-deep);
+    background: linear-gradient(160deg, var(--accent-tint), var(--surface) 70%);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .notice-tag {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+    margin: 0;
+  }
+
+  .notice-highlight h3 { margin-top: 2px; }
+
+  .notice-meta {
+    font-style: italic;
+    color: var(--ink-faint) !important;
+  }
+
+  .cta {
+    align-self: flex-start;
+    margin-top: 8px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-decoration: none;
+    color: var(--on-accent);
+    background: var(--accent-bright);
+    border-radius: 6px;
+    padding: 7px 14px;
+  }
+  .cta:hover { opacity: 0.88; }
+
+  /* ---------- Series ---------- */
+  .series-group {
+    margin-bottom: 20px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    overflow: hidden;
+  }
+
+  .series-level {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+    background: var(--surface-2);
+    margin: 0;
+    padding: 9px 16px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .series-level span {
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  .series-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .series-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    border-top: 1px solid var(--line);
+  }
+  .series-list li:first-child { border-top: none; }
+
+  .series-cohort {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .series-meta {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .enroll-link {
+    flex-shrink: 0;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--accent-text);
+    border: 1px solid var(--line-deep);
+    border-radius: 6px;
+    padding: 6px 12px;
+    background: var(--paper);
+  }
+  .enroll-link:hover { border-color: var(--accent); }
+
+  .notice-codes .code-chips { margin-top: 4px; }
+
+  .code-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 5px 12px 5px 6px;
+  }
+
+  .chip code {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 0.74rem;
+    font-weight: 800;
+    color: var(--on-accent);
+    background: var(--accent-bright);
+    border-radius: 999px;
+    padding: 3px 9px;
+  }
+
+  /* ---------- Next week preview ---------- */
+  .preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 12px;
+  }
+
+  .preview-day {
+    background: var(--surface-2);
+    border: 1px dashed var(--line-deep);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+
+  .preview-day h4 {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 0.86rem;
+    font-weight: 800;
+    color: var(--ink);
+    margin: 0 0 8px;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+  }
+
+  .preview-day h4 span {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .preview-day ul + .empty-note { margin-top: 6px; }
+
+  .preview-day ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .preview-day li {
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    display: flex;
+    gap: 8px;
+  }
+
+  .preview-day li .t {
+    font-weight: 800;
+    color: var(--ink);
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- Footer ---------- */
+  .page-footer {
+    margin-top: 52px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     gap: 10px;
-    padding: 5px 0;
-    border-top: 1px solid var(--sand);
-    font-size: 13px;
-  }
-  .series-group .cohort-row:first-of-type {
-    border-top: none;
+    font-size: 0.76rem;
+    color: var(--ink-faint);
   }
 
-  .cohort-info { line-height: 1.4; }
-  .cohort-info .cohort-name { font-weight: 600; color: var(--ink); }
-  .cohort-info .cohort-meta { color: var(--grey); font-size: 12px; }
+  .page-footer p { margin: 0; }
+  .updated { font-variant-numeric: tabular-nums; font-weight: 700; }
 
-  .cohort-row a {
-    flex: 0 0 auto;
-    font-size: 12px;
-    font-weight: 600;
-    white-space: nowrap;
-  }
-
-  /* ---------- NEXT WEEK ---------- */
-  .next-week {
-    background: var(--sand);
-    border-radius: 6px;
-    padding: 6px 20px 4px;
-  }
-
-  .next-week .day {
-    border-top-color: rgba(0,0,0,0.08);
-  }
-  .next-week .day:last-of-type {
-    border-bottom-color: rgba(0,0,0,0.08);
-  }
-
-  .next-week .day-name { font-size: 14px; }
-  .next-week .class-topic { font-size: 16px; }
-  .next-week .class-time { font-size: 12px; }
-
-  /* ---------- FOOTER ---------- */
-  footer {
-    text-align: center;
-    margin-top: 60px;
-    padding-top: 24px;
-    border-top: 1px solid var(--sand);
-    font-size: 12px;
-    color: var(--grey);
-  }
-
-  footer .mark {
-    font-family: 'Avaria Serif Libre', serif;
-    font-size: 15px;
-    color: var(--gold-deep);
-    display: block;
-    margin-bottom: 6px;
-  }
-
-  @media (max-width: 480px) {
-    .hero { padding: 48px 20px 36px; }
-    .class-item { gap: 10px; }
-    .class-time { flex-basis: 58px; font-size: 12px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .roster-link, .enroll-link, .cta { transition: opacity 0.15s ease, border-color 0.15s ease; }
   }
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="stars">
-    <span class="star big">✦</span>
-    <span class="star small">✦</span>
-  </div>
-  <span class="hero-eyebrow">What's happening at</span>
-  <h1>New Mom School</h1>
-  <p class="range">West County Studio · August 31–September 6</p>
-  <div class="sub">
-    <p>This page is your weekly hub for everything happening at New Mom School West County — a quick look at what's coming up on the calendar, any special events coming up, and announcements for our team. This communication tool is for our Instructors and Visiting Experts only, so please keep the details here between us.</p>
-    <p>We're so grateful for each and every one of you — you truly are the heart of this studio.</p>
-  </div>
-</div>
+<div class="page">
 
-<div class="wrap">
-
-  <div class="section-label first">This week</div>
-
-  <div class="day" data-date="2026-08-31">
-    <div class="day-head">
-      <span class="day-name">Monday</span>
-      <span class="day-date">August 31</span>
+  <header class="masthead">
+    <div class="stars" aria-hidden="true">
+      <svg class="big" width="20" height="20" viewBox="0 0 24 24"><path d="M12 0C12 6 14 10 20 12C14 14 12 18 12 24C12 18 10 14 4 12C10 10 12 6 12 0Z"/></svg>
+      <svg class="small" width="11" height="11" viewBox="0 0 24 24"><path d="M12 0C12 6 14 10 20 12C14 14 12 18 12 24C12 18 10 14 4 12C10 10 12 6 12 0Z"/></svg>
     </div>
-    <div class="class-item">
-      <div class="class-time">12:00 PM</div>
-      <div class="class-body">
-        <div class="class-series">Rising Toddler (B)</div>
-        <div class="class-topic">Sensory Development</div>
-        <a class="roster-link" href="https://docs.google.com/document/d/1ClI3WH4eQ0yjrZx25iRTpRZ6bAAzu7PnBhHgbhNK2SU/edit" target="_blank" rel="noopener">Roster & schedule →</a>
+    <div>
+      <p class="eyebrow">What's Happening at New Mom School</p>
+      <h1>instructor &amp; visiting expert hub</h1>
+      <div class="masthead-meta">
+        <span class="week-range">Sep 7 – 12, 2026</span>
       </div>
+      <p class="confidential-tag">Confidential Information</p>
+      <p class="masthead-intro">This page is your weekly hub for everything happening at New Mom School West County — a quick look at what's coming up on the calendar, any special events on the horizon, and announcements for our team. This communication tool is for our Instructors and Visiting Experts only, so please keep the details here between us.</p>
+      <p class="masthead-thanks">We're so grateful for each and every one of you! Thank you for all that you do!</p>
     </div>
-  </div>
+  </header>
 
-  <div class="day is-today" data-date="2026-09-01">
-    <div class="day-head">
-      <span class="day-name">Tuesday</span>
-      <span class="day-date">September 1</span>
-      <span class="today-flag">Today</span>
+  <section aria-labelledby="calendar-heading">
+    <h2 id="calendar-heading">this week's classes</h2>
+    <div class="day-grid">
+
+      <article class="day-card is-empty">
+        <h3>Monday <span class="date">Sep 7</span></h3>
+        <p class="empty-note">Labor Day — no Rising Toddler session, no Breastfeeding Support Group</p>
+      </article>
+
+      <article class="day-card">
+        <h3>Tuesday <span class="date">Sep 8</span></h3>
+        <ul class="sessions">
+          <li class="session">
+            <div class="session-time">10:00 AM</div>
+            <div>
+              <p class="session-title">Newborn — Week 8: "Relationship Changes After Baby"<span class="tag-picture">📸 Picture day</span></p>
+              <p class="session-people">Erin Hotz, MS, MSW, LCSW, PMH-C, Maternal Mental Health Therapist</p>
+              <a class="roster-link" href="https://docs.google.com/document/d/1vG02FsAoNOR2go4xN3HVGeOkz7X2PWePu8B-_zezw3o/edit" target="_blank" rel="noopener">Roster ↗</a>
+            </div>
+          </li>
+          <li class="session">
+            <div class="session-time">12:00 PM</div>
+            <div>
+              <p class="session-title">Infant — Week 8: "Positive Discipline"<span class="tag-picture">📸 Picture day</span></p>
+              <p class="session-people">Rachel Zahniser, Certified Parent Coach</p>
+              <a class="roster-link" href="https://docs.google.com/document/d/13K0gQjIv2eg92kGsHxD-RuiKGI60RBbeAkdWlPelNNk/edit" target="_blank" rel="noopener">Roster ↗</a>
+            </div>
+          </li>
+        </ul>
+      </article>
+
+      <article class="day-card">
+        <h3>Wednesday <span class="date">Sep 9</span></h3>
+        <ul class="sessions">
+          <li class="session">
+            <div class="session-time">10:00 AM</div>
+            <div>
+              <p class="session-title">Newborn — Week 3: "Newborn Sleep Foundations"</p>
+              <p class="session-people">Ali Kochtanek, PCD, Pediatric Sleep Consultant</p>
+              <a class="roster-link" href="https://docs.google.com/document/d/169Pq6HwnINr1eQk_vgcHhMlOzFISoDKUcVijfPkdRCY/edit" target="_blank" rel="noopener">Roster ↗</a>
+            </div>
+          </li>
+          <li class="session">
+            <div class="session-time">12:00 PM</div>
+            <div>
+              <p class="session-title">Newborn — Week 5: "Tummy Time and Infant Development"</p>
+              <p class="session-people">Liesel Nicholson, DPT, Pediatric PT</p>
+              <a class="roster-link" href="https://docs.google.com/document/d/11HW9qY5WlNxnHqb_q-e1iClD4xnXtEqlpRv4qesF4ko/edit" target="_blank" rel="noopener">Roster ↗</a>
+            </div>
+          </li>
+        </ul>
+      </article>
+
+      <article class="day-card">
+        <h3>Thursday <span class="date">Sep 10</span></h3>
+        <ul class="sessions">
+          <li class="session">
+            <div class="session-time">10:00 AM</div>
+            <div>
+              <p class="session-title">Newborn — Week 8: "Relationship Changes After Baby"<span class="tag-picture">📸 Picture day</span></p>
+              <p class="session-people">Amy Ballheimer, MA, LPC, Relationship Coach</p>
+              <a class="roster-link" href="https://docs.google.com/document/d/1TfTIDYLoQasq_0YKLWMid3BGWpVP4UmeyiwUaskV9FY/edit" target="_blank" rel="noopener">Roster ↗</a>
+            </div>
+          </li>
+          <li class="session">
+            <div class="session-time">12:00 PM</div>
+            <div>
+              <p class="session-title">Rising Toddler (B) — Week 8: "Preparing for Doctor's Checkups"<span class="tag-picture">📸 Picture day</span></p>
+              <a class="roster-link" href="https://docs.google.com/document/d/1X1NDHP9kshHsBgQbAbsHdfU9dPha_j0u6I4JPe2j2bk/edit" target="_blank" rel="noopener">Roster ↗</a>
+            </div>
+          </li>
+        </ul>
+      </article>
+
+      <article class="day-card is-empty">
+        <h3>Friday <span class="date">Sep 11</span></h3>
+        <p class="empty-note">No sessions scheduled</p>
+      </article>
+
+      <article class="day-card">
+        <h3>Saturday <span class="date">Sep 12</span></h3>
+        <ul class="sessions">
+          <li class="session">
+            <div class="session-time">9:30 AM</div>
+            <div>
+              <p class="session-title">Infant — Week 3: "Infant Mother Attachment"</p>
+              <p class="session-people">Lead Instructor</p>
+              <a class="roster-link" href="https://docs.google.com/document/d/1YInlV7lfXTsiQKJlRuNNg0q_DTfq9nugDscF9V7Gbuo/edit" target="_blank" rel="noopener">Roster ↗</a>
+            </div>
+          </li>
+          <li class="session">
+            <div class="session-time">11:30 AM</div>
+            <div>
+              <p class="session-title">Rising Toddler (DADs) — Week 4: "Sensory Development"<span class="tag-picture">📸 Picture day</span></p>
+              <a class="roster-link" href="https://docs.google.com/document/d/1lE9SKr_PczcRR-E6svd7sOkXrP862jpmDFv2-nxiNiE/edit" target="_blank" rel="noopener">Roster ↗</a>
+            </div>
+          </li>
+        </ul>
+      </article>
+
     </div>
-    <div class="class-item">
-      <div class="class-time">10:00 AM</div>
-      <div class="class-body">
-        <div class="class-series">Newborn</div>
-        <div class="class-topic">Working vs. Staying at Home</div>
-        <div class="class-presenter">Lead Instructor — Mackenzie Graumenz</div>
-        <a class="roster-link" href="https://docs.google.com/document/d/1vG02FsAoNOR2go4xN3HVGeOkz7X2PWePu8B-_zezw3o/edit" target="_blank" rel="noopener">Roster & schedule →</a>
-      </div>
-    </div>
-    <div class="class-item">
-      <div class="class-time">12:00 PM</div>
-      <div class="class-body">
-        <div class="class-series">Infant</div>
-        <div class="class-topic">Infant Mother Attachment</div>
-        <div class="class-presenter">Lead Instructor — Mackenzie Graumenz</div>
-        <a class="roster-link" href="https://docs.google.com/document/d/13K0gQjIv2eg92kGsHxD-RuiKGI60RBbeAkdWlPelNNk/edit" target="_blank" rel="noopener">Roster & schedule →</a>
-      </div>
-    </div>
-  </div>
+  </section>
 
-  <div class="day" data-date="2026-09-02">
-    <div class="day-head">
-      <span class="day-name">Wednesday</span>
-      <span class="day-date">September 2</span>
-    </div>
-    <div class="class-item">
-      <div class="class-time">10:00 AM</div>
-      <div class="class-body">
-        <div class="class-series">Newborn</div>
-        <div class="class-topic">Soothing Your Fussy Baby</div>
-        <div class="class-presenter">Lead Instructor — Chelsea</div>
-        <div class="photo-flag">📸 Picture day</div>
-        <a class="roster-link" href="https://docs.google.com/document/d/169Pq6HwnINr1eQk_vgcHhMlOzFISoDKUcVijfPkdRCY/edit" target="_blank" rel="noopener">Roster & schedule →</a>
-      </div>
-    </div>
-    <div class="class-item">
-      <div class="class-time">12:00 PM</div>
-      <div class="class-body">
-        <div class="class-series">Newborn</div>
-        <div class="class-topic">Reducing Postpartum Worry and Anxiety</div>
-        <div class="class-presenter">Erin Hotz, Maternal Mental Health Therapist — with Ali Kochtanek</div>
-        <a class="roster-link" href="https://docs.google.com/document/d/11HW9qY5WlNxnHqb_q-e1iClD4xnXtEqlpRv4qesF4ko/edit" target="_blank" rel="noopener">Roster & schedule →</a>
-      </div>
-    </div>
-  </div>
+  <section aria-labelledby="announcements-heading">
+    <h2 id="announcements-heading">announcements</h2>
+    <div class="notice-list">
 
-  <div class="day" data-date="2026-09-03">
-    <div class="day-head">
-      <span class="day-name">Thursday</span>
-      <span class="day-date">September 3</span>
-    </div>
-    <div class="class-item">
-      <div class="class-time">10:00 AM</div>
-      <div class="class-body">
-        <div class="class-series">Newborn</div>
-        <div class="class-topic">Working vs. Staying at Home</div>
-        <div class="class-presenter">Lead Instructor — Ali Kochtanek</div>
-        <a class="roster-link" href="https://docs.google.com/document/d/1TfTIDYLoQasq_0YKLWMid3BGWpVP4UmeyiwUaskV9FY/edit" target="_blank" rel="noopener">Roster & schedule →</a>
-      </div>
-    </div>
-  </div>
+      <article class="notice">
+        <h3>Invoices &amp; New Team Paperwork</h3>
+        <p>Send all invoices to Alicia at <a href="mailto:ap.jom.bookkeeping@gmail.com">ap.jom.bookkeeping@gmail.com</a> and always CC Ali. New to the team? Contact Alicia at the same address for your W9 and Direct Deposit forms.</p>
+      </article>
 
-  <div class="day" data-date="2026-09-04">
-    <div class="day-head">
-      <span class="day-name">Friday</span>
-      <span class="day-date">September 4</span>
-    </div>
-    <p class="empty-note">No sessions scheduled.</p>
-  </div>
+      <article class="notice">
+        <h3>Referrals &amp; Discount Codes</h3>
+        <p>Know a mama who'd be a great fit for NMS? We love referrals from our Instructors and Visiting Experts! If you'd like your own personal referral code to share with clients, friends, or your network, just reach out to Ali directly and she'll get one set up for you.</p>
+      </article>
 
-  <div class="day" data-date="2026-09-05">
-    <div class="day-head">
-      <span class="day-name">Saturday</span>
-      <span class="day-date">September 5</span>
-    </div>
-    <p class="empty-note">No sessions this week — Infant and Rising Toddler (DADs) cohorts are between meeting dates.</p>
-  </div>
-
-  <div class="section-label">Announcements</div>
-  <div class="announce">
-    <p><strong>Invoices &amp; new team paperwork</strong></p>
-    <p>Please send all invoices to Alicia at <a href="mailto:ap.jom.bookkeeping@gmail.com">ap.jom.bookkeeping@gmail.com</a> and always CC Ali.</p>
-    <p>New to the team? Contact Alicia at the email above for your W9 and Direct Deposit forms.</p>
-  </div>
-
-  <div class="announce">
-    <p><strong>Referrals &amp; discount codes</strong></p>
-    <p>Know a mama who'd be a great fit for NMS? We love referrals from our Instructors and Visiting Experts! If you'd like your own personal referral code to share with clients, friends, or your network, just reach out to Ali directly and she'll get one set up for you.</p>
-  </div>
-
-  <div class="announce">
-    <p><strong>Infant and Newborn Safety Workshop</strong></p>
-    <p>Friday, October 10 · 3:00–5:00 PM</p>
-    <p><a href="https://bitesizedwellness.as.me/new-mom-school" target="_blank" rel="noopener">bitesizedwellness.as.me/new-mom-school →</a></p>
-  </div>
-
-  <div class="announce">
-    <p><strong>Upcoming Class Series</strong></p>
-    <p>Share these with moms who are ready to enroll — links go straight to purchase.</p>
-
-    <div class="series-group">
-      <h4>Newborn (0–3 mos)</h4>
-      <div class="cohort-row">
-        <div class="cohort-info"><span class="cohort-name">August 2026 Babies</span><br><span class="cohort-meta">Tue 10:00–11:30 AM · Sep 22–Nov 10 · Mackenzie</span></div>
-        <a href="https://momence.com/l/DAh68g8P" target="_blank" rel="noopener">Enroll →</a>
-      </div>
-      <div class="cohort-row">
-        <div class="cohort-info"><span class="cohort-name">September 2026 Babies</span><br><span class="cohort-meta">Wed 12:00–1:30 PM · Oct 14–Dec 9 · Chelsea</span></div>
-        <a href="https://momence.com/l/VRhkZ7DV" target="_blank" rel="noopener">Enroll →</a>
-      </div>
-      <div class="cohort-row">
-        <div class="cohort-info"><span class="cohort-name">Late Sept–Early/Mid Oct 2026 Babies</span><br><span class="cohort-meta">Wed 10:00–11:30 AM · Nov 4–Jan 13 · Chelsea</span></div>
-        <a href="https://momence.com/l/g7hq6PyR" target="_blank" rel="noopener">Enroll →</a>
-      </div>
-      <div class="cohort-row">
-        <div class="cohort-info"><span class="cohort-name">Mid/Late October 2026 Babies</span><br><span class="cohort-meta">Tue 10:00–11:30 AM · Nov 24–Jan 26 · Mackenzie</span></div>
-        <a href="https://momence.com/l/ALhmelKa" target="_blank" rel="noopener">Enroll →</a>
-      </div>
-    </div>
-
-    <div class="series-group">
-      <h4>Infant (3–6 mos)</h4>
-      <div class="cohort-row">
-        <div class="cohort-info"><span class="cohort-name">April–June 2026 Babies</span><br><span class="cohort-meta">Sun 10:00–11:30 AM · Sep 13–Nov 1 · Ali</span></div>
-        <a href="https://momence.com/l/g7hbPgl8" target="_blank" rel="noopener">Enroll →</a>
-      </div>
-      <div class="cohort-row">
-        <div class="cohort-info"><span class="cohort-name">April–June 2026 Babies</span><br><span class="cohort-meta">Tue 12:00–1:30 PM · Sep 22–Nov 10 · Mackenzie</span></div>
-        <a href="https://momence.com/l/4ZhQVjQa" target="_blank" rel="noopener">Enroll →</a>
-      </div>
-      <div class="cohort-row">
-        <div class="cohort-info"><span class="cohort-name">June–August 2026 Babies</span><br><span class="cohort-meta">Tue 12:00–1:30 PM · Nov 24–Jan 26 · Mackenzie</span></div>
-        <a href="https://momence.com/l/79hL7AAg" target="_blank" rel="noopener">Enroll →</a>
-      </div>
-    </div>
-
-    <div class="series-group">
-      <h4>Rising Toddler (6–12 mos)</h4>
-      <div class="cohort-row">
-        <div class="cohort-info"><span class="cohort-name">Sept 2025–March 2026 Babies</span><br><span class="cohort-meta">Sat 1:15–2:30 PM · Sep 19–Nov 7 · Stephanie</span></div>
-        <a href="https://momence.com/l/mXhQqqZ9" target="_blank" rel="noopener">Enroll →</a>
-      </div>
-      <div class="cohort-row">
-        <div class="cohort-info"><span class="cohort-name">Sept 2025–March 2026 Babies</span><br><span class="cohort-meta">Sat 11:30 AM–12:45 PM · Sep 19–Nov 7 · Stephanie</span></div>
-        <a href="https://momence.com/l/R5hJq7gW" target="_blank" rel="noopener">Enroll →</a>
-      </div>
-      <div class="cohort-row">
-        <div class="cohort-info"><span class="cohort-name">Sept 2025–March 2026 Babies</span><br><span class="cohort-meta">Thu 12:00–1:15 PM · Sep 24–Nov 12 · Laura</span></div>
-        <a href="https://momence.com/l/WQhRb5EL" target="_blank" rel="noopener">Enroll →</a>
-      </div>
-      <div class="cohort-row">
-        <div class="cohort-info"><span class="cohort-name">Oct 2025–April 2026 Babies</span><br><span class="cohort-meta">Mon 12:00–1:15 PM · Oct 19–Dec 7 · Abby</span></div>
-        <a href="https://momence.com/l/rqhWyr96" target="_blank" rel="noopener">Enroll →</a>
-      </div>
-    </div>
-
-    <div class="series-group">
-      <h4>Second Time Mom (0–3 mos)</h4>
-      <div class="cohort-row">
-        <div class="cohort-info"><span class="cohort-name">Fall 2026 Babies</span><br><span class="cohort-meta">Thu 9:30–11:00 AM · Nov 12–Jan 21 · Ali</span></div>
-        <a href="https://momence.com/l/QQhEJBAr" target="_blank" rel="noopener">Enroll →</a>
-      </div>
-    </div>
-
-    <div class="series-group">
-      <h4>Dad's Weekend Rising Toddler — Drop-In</h4>
-      <div class="cohort-row">
-        <div class="cohort-info"><span class="cohort-name">Week 4 Drop-In — Babbling: Your Toddler's Communication</span><br><span class="cohort-meta">Sat 11:30 AM–12:45 PM · Sep 12, 2026 · Stephanie</span></div>
-        <a href="https://momence.com/l/4ZhQQB9P" target="_blank" rel="noopener">Enroll →</a>
-      </div>
-    </div>
-
-    <div class="series-group">
-      <h4>Breastfeeding Support Group</h4>
-      <div class="cohort-row">
-        <div class="cohort-info"><span class="cohort-name">Breastfeeding Support Group</span><br><span class="cohort-meta">Sep 14, 2026</span></div>
-        <a href="https://momence.com/l/0ehlMK8k" target="_blank" rel="noopener">Enroll →</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="announce">
-    <p><strong>Alumni Discount Codes</strong></p>
-    <p>Share these with moms moving on to their next series:</p>
-    <div class="series-group">
-      <div class="cohort-row">
-        <div class="cohort-info"><span class="cohort-name">BUMPS50</span><br><span class="cohort-meta">Pre-registration</span></div>
-      </div>
-      <div class="cohort-row">
-        <div class="cohort-info"><span class="cohort-name">INFANT50</span><br><span class="cohort-meta">Newborn → Infant</span></div>
-      </div>
-      <div class="cohort-row">
-        <div class="cohort-info"><span class="cohort-name">NMS25</span><br><span class="cohort-meta">Infant → Rising Toddler</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-label">Next week, at a glance</div>
-  <div class="next-week">
-
-    <div class="day" data-date="2026-09-07">
-      <div class="day-head">
-        <span class="day-name">Monday, Sept 7</span>
-      </div>
-      <p class="empty-note">Labor Day — no Rising Toddler session this week.</p>
-    </div>
-
-    <div class="day" data-date="2026-09-08">
-      <div class="day-head">
-        <span class="day-name">Tuesday, Sept 8</span>
-      </div>
-      <div class="class-item">
-        <div class="class-time">10:00 AM</div>
-        <div class="class-body">
-          <div class="class-series">Newborn</div>
-          <div class="class-topic">Relationship Changes After Baby</div>
-          <div class="class-presenter">Erin Hotz</div>
-          <div class="photo-flag">📸 Picture day</div>
+      <article class="notice notice-codes">
+        <h3>Alumni Discount Codes</h3>
+        <div class="code-chips">
+          <span class="chip"><code>BUMPS50</code> Pre-registration</span>
+          <span class="chip"><code>INFANT50</code> Newborn → Infant</span>
+          <span class="chip"><code>NMS25</code> Infant → Rising Toddler</span>
         </div>
-      </div>
-      <div class="class-item">
-        <div class="class-time">12:00 PM</div>
-        <div class="class-body">
-          <div class="class-series">Infant</div>
-          <div class="class-topic">Positive Discipline</div>
-          <div class="class-presenter">Rachel Zahniser, Certified Parent Coach</div>
-          <div class="photo-flag">📸 Picture day</div>
-        </div>
-      </div>
+      </article>
+
+      <article class="notice notice-highlight">
+        <p class="notice-tag">Save the date</p>
+        <h3>Infant &amp; Newborn Safety Workshop</h3>
+        <p>Friday, October 10 · 3:00–5:00 PM · with Bite Sized Peds</p>
+        <a class="cta" href="https://bitesizedwellness.as.me/new-mom-school" target="_blank" rel="noopener">Register ↗</a>
+      </article>
+
+      <article class="notice notice-highlight">
+        <p class="notice-tag">Save the date</p>
+        <h3>Potty Training Parent Workshop</h3>
+        <p>Saturday, November 7 · 3:00–4:30 PM · Savannah Carlson, Rhea Physical Therapy</p>
+        <p class="notice-meta">Registration link coming soon</p>
+      </article>
+
+      <article class="notice">
+        <h3>Locked Out? We've Got You</h3>
+        <p>We've added a lockbox in the office down the hall — if you ever get locked out of the room, the combination is 1765.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section aria-labelledby="series-heading">
+    <h2 id="series-heading">upcoming class series &amp; enrollment</h2>
+
+    <div class="series-group">
+      <p class="series-level">Newborn <span>0–3 mos</span></p>
+      <ul class="series-list">
+        <li><div><span class="series-cohort">August 2026 Babies</span><span class="series-meta">Tue 10:00–11:30 AM · Sep 22–Nov 10 · Mackenzie</span></div><a class="enroll-link" href="https://momence.com/l/DAh68g8P" target="_blank" rel="noopener">Enroll ↗</a></li>
+        <li><div><span class="series-cohort">September 2026 Babies</span><span class="series-meta">Wed 12:00–1:30 PM · Oct 14–Dec 9 · Chelsea</span></div><a class="enroll-link" href="https://momence.com/l/VRhkZ7DV" target="_blank" rel="noopener">Enroll ↗</a></li>
+        <li><div><span class="series-cohort">Late Sept–Early/Mid Oct 2026 Babies</span><span class="series-meta">Wed 10:00–11:30 AM · Nov 4–Jan 13 · Chelsea</span></div><a class="enroll-link" href="https://momence.com/l/g7hq6PyR" target="_blank" rel="noopener">Enroll ↗</a></li>
+        <li><div><span class="series-cohort">Mid/Late October 2026 Babies</span><span class="series-meta">Tue 10:00–11:30 AM · Nov 24–Jan 26 · Mackenzie</span></div><a class="enroll-link" href="https://momence.com/l/ALhmelKa" target="_blank" rel="noopener">Enroll ↗</a></li>
+      </ul>
     </div>
 
-    <div class="day" data-date="2026-09-09">
-      <div class="day-head">
-        <span class="day-name">Wednesday, Sept 9</span>
-      </div>
-      <div class="class-item">
-        <div class="class-time">10:00 AM</div>
-        <div class="class-body">
-          <div class="class-series">Newborn</div>
-          <div class="class-topic">Newborn Sleep Foundations</div>
-          <div class="class-presenter">Ali Kochtanek, PCD, Pediatric Sleep Consultant</div>
-        </div>
-      </div>
-      <div class="class-item">
-        <div class="class-time">12:00 PM</div>
-        <div class="class-body">
-          <div class="class-series">Newborn</div>
-          <div class="class-topic">Tummy Time and Infant Development</div>
-          <div class="class-presenter">Liesel Nicholson, DPT, Pediatric PT</div>
-        </div>
-      </div>
+    <div class="series-group">
+      <p class="series-level">Infant <span>3–6 mos</span></p>
+      <ul class="series-list">
+        <li><div><span class="series-cohort">April–June 2026 Babies</span><span class="series-meta">Sun 10:00–11:30 AM · Sep 13–Nov 1 · Ali</span></div><a class="enroll-link" href="https://momence.com/l/g7hbPgl8" target="_blank" rel="noopener">Enroll ↗</a></li>
+        <li><div><span class="series-cohort">April–June 2026 Babies</span><span class="series-meta">Tue 12:00–1:30 PM · Sep 22–Nov 10 · Mackenzie</span></div><a class="enroll-link" href="https://momence.com/l/4ZhQVjQa" target="_blank" rel="noopener">Enroll ↗</a></li>
+        <li><div><span class="series-cohort">June–August 2026 Babies</span><span class="series-meta">Tue 12:00–1:30 PM · Nov 24–Jan 26 · Mackenzie</span></div><a class="enroll-link" href="https://momence.com/l/79hL7AAg" target="_blank" rel="noopener">Enroll ↗</a></li>
+      </ul>
     </div>
 
-  </div>
+    <div class="series-group">
+      <p class="series-level">Rising Toddler <span>6–12 mos</span></p>
+      <ul class="series-list">
+        <li><div><span class="series-cohort">Sept 2025–March 2026 Babies</span><span class="series-meta">Sat 1:15–2:30 PM · Sep 19–Nov 7 · Stephanie</span></div><a class="enroll-link" href="https://momence.com/l/mXhQqqZ9" target="_blank" rel="noopener">Enroll ↗</a></li>
+        <li><div><span class="series-cohort">Sept 2025–March 2026 Babies</span><span class="series-meta">Sat 11:30 AM–12:45 PM · Sep 19–Nov 7 · Stephanie</span></div><a class="enroll-link" href="https://momence.com/l/R5hJq7gW" target="_blank" rel="noopener">Enroll ↗</a></li>
+        <li><div><span class="series-cohort">Sept 2025–March 2026 Babies</span><span class="series-meta">Thu 12:00–1:15 PM · Sep 24–Nov 12 · Laura</span></div><a class="enroll-link" href="https://momence.com/l/WQhRb5EL" target="_blank" rel="noopener">Enroll ↗</a></li>
+        <li><div><span class="series-cohort">Oct 2025–April 2026 Babies</span><span class="series-meta">Mon 12:00–1:15 PM · Oct 19–Dec 7 · Abby</span></div><a class="enroll-link" href="https://momence.com/l/rqhWyr96" target="_blank" rel="noopener">Enroll ↗</a></li>
+      </ul>
+    </div>
 
-  <footer>
-    <span class="mark">✦ New Mom School</span>
-    West County Studio — for Instructors &amp; Visiting Experts
+    <div class="series-group">
+      <p class="series-level">Second Time Mom <span>0–3 mos</span></p>
+      <ul class="series-list">
+        <li><div><span class="series-cohort">Fall 2026 Babies</span><span class="series-meta">Thu 9:30–11:00 AM · Nov 12–Jan 21 · Ali</span></div><a class="enroll-link" href="https://momence.com/l/QQhEJBAr" target="_blank" rel="noopener">Enroll ↗</a></li>
+      </ul>
+    </div>
+
+    <div class="series-group">
+      <p class="series-level">Dad's Weekend <span>Rising Toddler — Drop-In</span></p>
+      <ul class="series-list">
+        <li><div><span class="series-cohort">Week 4: Babbling — Your Toddler's Communication</span><span class="series-meta">Sat 11:30 AM–12:45 PM · Sep 12, 2026 · Stephanie</span></div><a class="enroll-link" href="https://momence.com/l/4ZhQQB9P" target="_blank" rel="noopener">Enroll ↗</a></li>
+      </ul>
+    </div>
+
+    <div class="series-group">
+      <p class="series-level">Breastfeeding Support Group</p>
+      <ul class="series-list">
+        <li><div><span class="series-cohort">Drop-in session</span><span class="series-meta">Sep 14, 2026</span></div><a class="enroll-link" href="https://momence.com/l/0ehlMK8k" target="_blank" rel="noopener">Enroll ↗</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="nextweek-heading">
+    <h2 id="nextweek-heading">next week at a glance <span class="range">Sep 14–19</span></h2>
+    <div class="preview-grid">
+      <div class="preview-day">
+        <h4>Monday <span>Sep 14</span></h4>
+        <ul>
+          <li><span class="t">10:00</span> Breastfeeding Support Group — Abeille Feeding Clinic</li>
+          <li><span class="t">12:00</span> Rising Toddler (B) — Week 5: "There is No Right Way to Play"</li>
+        </ul>
+      </div>
+      <div class="preview-day">
+        <h4>Tuesday <span>Sep 15</span></h4>
+        <p class="empty-note">No sessions scheduled — Newborn and Infant Tuesday cohorts are between series</p>
+      </div>
+      <div class="preview-day">
+        <h4>Wednesday <span>Sep 16</span></h4>
+        <ul>
+          <li><span class="t">10:00</span> Newborn — Week 4: "Reducing Postpartum Worry and Anxiety" — Erin Hotz</li>
+          <li><span class="t">12:00</span> Newborn — Week 6: "The Postpartum Body" — Dr. Jamie Kocher, DPT</li>
+        </ul>
+      </div>
+      <div class="preview-day">
+        <h4>Thursday <span>Sep 17</span></h4>
+        <p class="empty-note">No sessions scheduled — Newborn and Rising Toddler Thursday cohorts are between series</p>
+      </div>
+      <div class="preview-day">
+        <h4>Friday <span>Sep 18</span></h4>
+        <p class="empty-note">No sessions scheduled</p>
+      </div>
+      <div class="preview-day">
+        <h4>Saturday <span>Sep 19</span></h4>
+        <ul>
+          <li><span class="t">9:30</span> Infant — Week 4: "Developmental Stages of Growth and Ways to Play with Your Baby" — Liesel Nicholson, DPT</li>
+          <li><span class="t">11:30</span> Rising Toddler — Week 1: two new series begin — Stephanie</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    <p>New Mom School — West County. For instructors &amp; visiting experts only.</p>
+    <p class="updated">Updated Sep 6, 2026</p>
   </footer>
 
 </div>
