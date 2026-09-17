@@ -125,8 +125,12 @@
   }
 
   .preregister {
-    margin: -14px 0 34px;
+    margin: 0 0 6px;
     font-size: 0.95rem;
+  }
+
+  #preregister {
+    margin: -14px 0 28px;
   }
 
   .preregister a {
@@ -367,7 +371,7 @@
   // Build month picker buttons, Sept 2025 through Nov 2026
   const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const grid = document.getElementById('monthGrid');
-  const start = {y:2025, m:9}, end = {y:2026, m:11};
+  const start = {y:2025, m:9}, end = {y:2027, m:4};
   let y = start.y, m = start.m;
   while (y < end.y || (y === end.y && m <= end.m)) {
     const key = y + '-' + m;
@@ -401,7 +405,9 @@
 
     const [ky, km] = key.split('-').map(Number);
     const monthLabel = monthFullNames[km - 1] + ' ' + ky;
-    preregister.innerHTML = '<p class="preregister">Expecting in ' + monthLabel + '? <a href="https://momence.com/m/491595" target="_blank" rel="noopener">Preregister here</a>.</p>';
+    preregister.innerHTML =
+      '<p class="preregister">Expecting your first baby in ' + monthLabel + '? <a href="https://momence.com/m/491595" target="_blank" rel="noopener">Preregister here</a>.</p>' +
+      '<p class="preregister">Expecting your second baby in ' + monthLabel + '? <a href="https://momence.com/m/491596" target="_blank" rel="noopener">Preregister here</a>.</p>';
 
     const matches = classes.filter(c => c.range.includes(key));
 
