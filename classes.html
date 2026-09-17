@@ -124,6 +124,18 @@
     .month-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
+  .preregister {
+    margin: -14px 0 34px;
+    font-size: 0.95rem;
+  }
+
+  .preregister a {
+    color: var(--gold);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+  }
+
   .empty-state {
     font-style: italic;
     color: var(--charcoal-soft);
@@ -276,6 +288,8 @@
     <div class="month-grid" id="monthGrid"></div>
   </div>
 
+  <div id="preregister"></div>
+
   <div id="results">
     <p class="empty-state">Choose a birth month above to see your matching classes.</p>
   </div>
@@ -296,7 +310,7 @@
   </div>
 
   <div class="contact-note">
-    Not sure which class fits, or don't see a spot that works with your schedule? Reach out and we'll help you find the right fit — <a href="mailto:ali.kochtanek@newmomschool.com">ali.kochtanek@newmomschool.com</a>.
+    Not sure which class fits, or don't see a spot that works with your schedule? Reach out and we'll help you find the right fit — <a href="mailto:stlwestcounty@newmomschool.com">stlwestcounty@newmomschool.com</a>.
   </div>
 
 </div>
@@ -372,14 +386,22 @@
     if (m > 12) { m = 1; y++; }
   }
 
+  const monthFullNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   const programOrder = ['Newborn', 'Infant', 'Rising Toddler', 'Second Time Mom'];
 
   function render(key) {
+    const preregister = document.getElementById('preregister');
     const results = document.getElementById('results');
+
     if (!key) {
+      preregister.innerHTML = '';
       results.innerHTML = '<p class="empty-state">Choose a birth month above to see your matching classes.</p>';
       return;
     }
+
+    const [ky, km] = key.split('-').map(Number);
+    const monthLabel = monthFullNames[km - 1] + ' ' + ky;
+    preregister.innerHTML = '<p class="preregister">Expecting in ' + monthLabel + '? <a href="https://momence.com/m/491595" target="_blank" rel="noopener">Preregister here</a>.</p>';
 
     const matches = classes.filter(c => c.range.includes(key));
 
