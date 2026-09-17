@@ -61,6 +61,13 @@
     margin-bottom: 40px;
   }
 
+  .site-name {
+    font-family: 'Averia Serif Libre', Georgia, serif;
+    font-size: 1.05rem;
+    color: var(--gold);
+    margin: 0 0 20px;
+  }
+
   .picker label {
     display: block;
     font-family: 'Averia Serif Libre', Georgia, serif;
@@ -185,6 +192,24 @@
     font-weight: 700;
   }
 
+  .register-link {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  .waitlist-tag {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 0.78rem;
+    font-style: italic;
+    color: var(--charcoal-soft);
+  }
+
   .no-match {
     padding: 20px 0;
     color: var(--charcoal-soft);
@@ -207,6 +232,31 @@
     border-bottom: 1px solid var(--gold);
   }
 
+  .bfsupport {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 2px solid var(--gold);
+    font-size: 1rem;
+    color: var(--charcoal);
+    line-height: 1.6;
+  }
+
+  .bfsupport h2 {
+    font-family: 'Averia Serif Libre', Georgia, serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin: 0 0 8px;
+  }
+
+  .bfsupport a {
+    color: var(--gold);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+  }
+
   @media (max-width: 420px) {
     h1 { font-size: 2rem; }
     .class-instructor { text-align: left; align-self: flex-start; }
@@ -215,6 +265,8 @@
 </head>
 <body>
 <div class="wrap">
+
+  <p class="site-name">New Mom School St. Louis West County</p>
 
   <h1>Find <em>your</em> class</h1>
   <p class="intro">Every New Mom School class is grouped by your baby's age, so you're learning alongside moms at the exact same stage. Pick your baby's birth month below to see every class that fits right now.</p>
@@ -226,6 +278,21 @@
 
   <div id="results">
     <p class="empty-state">Choose a birth month above to see your matching classes.</p>
+  </div>
+
+  <div class="bfsupport">
+    <h2>Bumps &amp; Bagels</h2>
+    <p>Sunday, Oct 11 — free to attend, for expecting moms. <a href="https://momence.com/l/e4hvEPqe" target="_blank" rel="noopener">Sign up here</a>.</p>
+  </div>
+
+  <div class="bfsupport">
+    <h2>Sip &amp; See</h2>
+    <p>Friday, Sep 25 · 10:00–11:30 AM — for moms with babies 0–6 months not currently enrolled in a series. <a href="https://momence.com/l/WQh9gj6n" target="_blank" rel="noopener">Sign up here</a>.</p>
+  </div>
+
+  <div class="bfsupport">
+    <h2>Breastfeeding Support Group</h2>
+    <p>Open to every mom, free of charge — no class enrollment required. <a href="https://momence.com/l/x9hj5xVB" target="_blank" rel="noopener">Sign up here</a>.</p>
   </div>
 
   <div class="contact-note">
@@ -250,35 +317,37 @@
   const classes = [
     // Newborn
     { program: 'Newborn', sub: '0–3 months', range: months(2026,8,2026,8), label: 'August 2026 babies',
-      day: 'Tuesdays', time: '10:00–11:30 AM', start: 'Sep 22, 2026', end: 'Nov 10, 2026', instructor: 'Mackenzie' },
+      day: 'Tuesdays', time: '10:00–11:30 AM', start: 'Sep 22, 2026', end: 'Nov 10, 2026', instructor: 'Mackenzie', link: 'https://momence.com/l/DAh68g8P', waitlist: true },
     { program: 'Newborn', sub: '0–3 months', range: months(2026,9,2026,9), label: 'September 2026 babies',
-      day: 'Wednesdays', time: '12:00–1:30 PM', start: 'Oct 14, 2026', end: 'Dec 9, 2026', instructor: 'Chelsea' },
+      day: 'Wednesdays', time: '12:00–1:30 PM', start: 'Oct 14, 2026', end: 'Dec 9, 2026', instructor: 'Chelsea', link: 'https://momence.com/l/VRhkZ7DV' },
     { program: 'Newborn', sub: '0–3 months', range: months(2026,9,2026,10), label: 'Late Sept–early/mid Oct 2026 babies',
-      day: 'Wednesdays', time: '10:00–11:30 AM', start: 'Nov 4, 2026', end: 'Jan 13, 2027', instructor: 'Chelsea' },
+      day: 'Wednesdays', time: '10:00–11:30 AM', start: 'Nov 4, 2026', end: 'Jan 13, 2027', instructor: 'Chelsea', link: 'https://momence.com/l/g7hq6PyR' },
     { program: 'Newborn', sub: '0–3 months', range: months(2026,10,2026,10), label: 'Mid/late October 2026 babies',
-      day: 'Tuesdays', time: '10:00–11:30 AM', start: 'Nov 24, 2026', end: 'Jan 26, 2027', instructor: 'Mackenzie' },
+      day: 'Tuesdays', time: '10:00–11:30 AM', start: 'Nov 24, 2026', end: 'Jan 26, 2027', instructor: 'Mackenzie', link: 'https://momence.com/l/ALhmelKa' },
 
     // Infant
     { program: 'Infant', sub: '3–6 months', range: months(2026,4,2026,6), label: 'April–June 2026 babies',
       day: 'Sundays', time: '10:00–11:30 AM', start: 'Sep 13, 2026', end: 'Nov 1, 2026', instructor: 'Ali' },
     { program: 'Infant', sub: '3–6 months', range: months(2026,4,2026,6), label: 'April–June 2026 babies',
-      day: 'Tuesdays', time: '12:00–1:30 PM', start: 'Sep 22, 2026', end: 'Nov 10, 2026', instructor: 'Mackenzie' },
+      day: 'Tuesdays', time: '12:00–1:30 PM', start: 'Sep 22, 2026', end: 'Nov 10, 2026', instructor: 'Mackenzie', link: 'https://momence.com/l/4ZhQVjQa' },
     { program: 'Infant', sub: '3–6 months', range: months(2026,6,2026,8), label: 'June–August 2026 babies',
-      day: 'Tuesdays', time: '12:00–1:30 PM', start: 'Nov 24, 2026', end: 'Jan 26, 2027', instructor: 'Mackenzie' },
+      day: 'Tuesdays', time: '12:00–1:30 PM', start: 'Nov 24, 2026', end: 'Jan 26, 2027', instructor: 'Mackenzie', link: 'https://momence.com/l/79hL7AAg' },
+    { program: 'Infant', sub: '3–6 months', range: months(2026,6,2026,8), label: 'June–early August 2026 babies',
+      day: 'Saturdays', time: '9:30–11:00 AM', start: 'Oct 24, 2026', end: 'Dec 19, 2026', instructor: 'Stephanie Shore', link: 'https://momence.com/l/J1hw2KJ5' },
 
     // Rising Toddler
     { program: 'Rising Toddler', sub: '6–12 months', range: months(2025,9,2026,3), label: 'Sept 2025–March 2026 babies',
-      day: 'Saturdays', time: '1:15–2:30 PM', start: 'Sep 19, 2026', end: 'Nov 7, 2026', instructor: 'Stephanie (Curriculum A)' },
+      day: 'Saturdays', time: '1:15–2:30 PM', start: 'Sep 19, 2026', end: 'Nov 7, 2026', instructor: 'Stephanie (Curriculum A)', link: 'https://momence.com/l/mXhQqqZ9' },
     { program: 'Rising Toddler', sub: '6–12 months', range: months(2025,9,2026,3), label: 'Sept 2025–March 2026 babies',
-      day: 'Saturdays', time: '11:30 AM–12:45 PM', start: 'Sep 19, 2026', end: 'Nov 7, 2026', instructor: 'Stephanie (Curriculum A)' },
+      day: 'Saturdays', time: '11:30 AM–12:45 PM', start: 'Sep 19, 2026', end: 'Nov 7, 2026', instructor: 'Stephanie (Curriculum A)', link: 'https://momence.com/l/R5hJq7gW', waitlist: true },
     { program: 'Rising Toddler', sub: '6–12 months', range: months(2025,9,2026,3), label: 'Sept 2025–March 2026 babies',
-      day: 'Thursdays', time: '12:00–1:15 PM', start: 'Sep 24, 2026', end: 'Nov 12, 2026', instructor: 'Laura (Curriculum A)' },
+      day: 'Thursdays', time: '12:00–1:15 PM', start: 'Sep 24, 2026', end: 'Nov 12, 2026', instructor: 'Laura (Curriculum A)', link: 'https://momence.com/l/WQhRb5EL' },
     { program: 'Rising Toddler', sub: '6–12 months', range: months(2025,10,2026,4), label: 'Oct 2025–April 2026 babies',
-      day: 'Mondays', time: '12:00–1:15 PM', start: 'Oct 19, 2026', end: 'Dec 7, 2026', instructor: 'Abby (Curriculum A)' },
+      day: 'Mondays', time: '12:00–1:15 PM', start: 'Oct 19, 2026', end: 'Dec 7, 2026', instructor: 'Abby (Curriculum A)', link: 'https://momence.com/l/rqhWyr96' },
 
     // Second Time Mom
     { program: 'Second Time Mom', sub: '0–3 months', range: months(2026,9,2026,11), label: 'Fall 2026 babies',
-      day: 'Thursdays', time: '9:30–11:00 AM', start: 'Nov 12, 2026', end: 'Jan 21, 2027', instructor: 'Ali' },
+      day: 'Thursdays', time: '9:30–11:00 AM', start: 'Nov 12, 2026', end: 'Jan 21, 2027', instructor: 'Ali', link: 'https://momence.com/l/QQhEJBAr' },
   ];
 
   // Build month picker buttons, Sept 2025 through Nov 2026
@@ -332,7 +401,7 @@
         html += '<div class="class-daytime">' + c.day + ' · ' + c.time + '</div>';
         html += '<div class="class-dates">' + c.start + ' – ' + c.end + '</div>';
         html += '</div>';
-        html += '<div class="class-instructor"><strong>' + c.instructor.split(' (')[0] + '</strong>' + (c.instructor.includes('(') ? c.instructor.slice(c.instructor.indexOf('(')) : '') + '</div>';
+        html += '<div class="class-instructor"><strong>' + c.instructor.split(' (')[0] + '</strong>' + (c.instructor.includes('(') ? c.instructor.slice(c.instructor.indexOf('(')) : '') + (c.link ? '<br><a class="register-link" href="' + c.link + '" target="_blank" rel="noopener">' + (c.waitlist ? 'Join waitlist' : 'Register') + '</a>' : '') + (c.waitlist ? '<br><span class="waitlist-tag">Waitlist available</span>' : '') + '</div>';
         html += '</div>';
       });
       html += '</div>';
