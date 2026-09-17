@@ -55,3 +55,291 @@
   }
 
   .picker {
+    border-top: 2px solid var(--gold);
+    border-bottom: 2px solid var(--gold);
+    padding: 28px 0;
+    margin-bottom: 40px;
+  }
+
+  .picker label {
+    display: block;
+    font-family: 'Averia Serif Libre', Georgia, serif;
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+  }
+
+  .month-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .month-btn {
+    font-family: 'Nunito Sans', Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    background: transparent;
+    border: 1.5px solid var(--hairline);
+    border-radius: 4px;
+    padding: 12px 8px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  .month-btn .yr {
+    display: block;
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: var(--charcoal-soft);
+  }
+
+  .month-btn:hover {
+    border-color: var(--gold);
+  }
+
+  .month-btn:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  .month-btn.selected {
+    border: 2px solid var(--gold);
+    color: var(--gold);
+  }
+
+  .month-btn.selected .yr {
+    color: var(--gold);
+  }
+
+  @media (max-width: 380px) {
+    .month-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .empty-state {
+    font-style: italic;
+    color: var(--charcoal-soft);
+    padding: 8px 0 0;
+  }
+
+  .program-group {
+    margin-bottom: 36px;
+  }
+
+  .program-group h2 {
+    font-family: 'Averia Serif Libre', Georgia, serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin: 0 0 4px;
+  }
+
+  .program-sub {
+    font-size: 0.85rem;
+    color: var(--charcoal-soft);
+    margin: 0 0 16px;
+  }
+
+  .class-row {
+    border-top: 1px solid var(--hairline);
+    padding: 16px 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .class-row:last-child {
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .class-main {
+    flex: 1 1 auto;
+    min-width: 220px;
+  }
+
+  .class-daytime {
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  .class-dates {
+    color: var(--charcoal-soft);
+    font-size: 0.92rem;
+    margin-top: 2px;
+  }
+
+  .class-instructor {
+    flex: 0 0 auto;
+    text-align: right;
+    font-size: 0.92rem;
+    color: var(--charcoal-soft);
+    align-self: center;
+  }
+
+  .class-instructor strong {
+    display: block;
+    color: var(--charcoal);
+    font-weight: 700;
+  }
+
+  .no-match {
+    padding: 20px 0;
+    color: var(--charcoal-soft);
+    font-style: italic;
+  }
+
+  .contact-note {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--hairline);
+    font-size: 0.95rem;
+    color: var(--charcoal-soft);
+    line-height: 1.6;
+  }
+
+  .contact-note a {
+    color: var(--gold);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  @media (max-width: 420px) {
+    h1 { font-size: 2rem; }
+    .class-instructor { text-align: left; align-self: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Find <em>your</em> class</h1>
+  <p class="intro">Every New Mom School class is grouped by your baby's age, so you're learning alongside moms at the exact same stage. Pick your baby's birth month below to see every class that fits right now.</p>
+
+  <div class="picker">
+    <label>Baby's birth month</label>
+    <div class="month-grid" id="monthGrid"></div>
+  </div>
+
+  <div id="results">
+    <p class="empty-state">Choose a birth month above to see your matching classes.</p>
+  </div>
+
+  <div class="contact-note">
+    Not sure which class fits, or don't see a spot that works with your schedule? Reach out and we'll help you find the right fit — <a href="mailto:ali.kochtanek@newmomschool.com">ali.kochtanek@newmomschool.com</a>.
+  </div>
+
+</div>
+
+<script>
+  // Each class: program, birthRange as inclusive list of {y,m}, plus display fields
+  function months(startY, startM, endY, endM) {
+    const out = [];
+    let y = startY, m = startM;
+    while (y < endY || (y === endY && m <= endM)) {
+      out.push(y + '-' + m);
+      m++;
+      if (m > 12) { m = 1; y++; }
+    }
+    return out;
+  }
+
+  const classes = [
+    // Newborn
+    { program: 'Newborn', sub: '0–3 months', range: months(2026,8,2026,8), label: 'August 2026 babies',
+      day: 'Tuesdays', time: '10:00–11:30 AM', start: 'Sep 22, 2026', end: 'Nov 10, 2026', instructor: 'Mackenzie' },
+    { program: 'Newborn', sub: '0–3 months', range: months(2026,9,2026,9), label: 'September 2026 babies',
+      day: 'Wednesdays', time: '12:00–1:30 PM', start: 'Oct 14, 2026', end: 'Dec 9, 2026', instructor: 'Chelsea' },
+    { program: 'Newborn', sub: '0–3 months', range: months(2026,9,2026,10), label: 'Late Sept–early/mid Oct 2026 babies',
+      day: 'Wednesdays', time: '10:00–11:30 AM', start: 'Nov 4, 2026', end: 'Jan 13, 2027', instructor: 'Chelsea' },
+    { program: 'Newborn', sub: '0–3 months', range: months(2026,10,2026,10), label: 'Mid/late October 2026 babies',
+      day: 'Tuesdays', time: '10:00–11:30 AM', start: 'Nov 24, 2026', end: 'Jan 26, 2027', instructor: 'Mackenzie' },
+
+    // Infant
+    { program: 'Infant', sub: '3–6 months', range: months(2026,4,2026,6), label: 'April–June 2026 babies',
+      day: 'Sundays', time: '10:00–11:30 AM', start: 'Sep 13, 2026', end: 'Nov 1, 2026', instructor: 'Ali' },
+    { program: 'Infant', sub: '3–6 months', range: months(2026,4,2026,6), label: 'April–June 2026 babies',
+      day: 'Tuesdays', time: '12:00–1:30 PM', start: 'Sep 22, 2026', end: 'Nov 10, 2026', instructor: 'Mackenzie' },
+    { program: 'Infant', sub: '3–6 months', range: months(2026,6,2026,8), label: 'June–August 2026 babies',
+      day: 'Tuesdays', time: '12:00–1:30 PM', start: 'Nov 24, 2026', end: 'Jan 26, 2027', instructor: 'Mackenzie' },
+
+    // Rising Toddler
+    { program: 'Rising Toddler', sub: '6–12 months', range: months(2025,9,2026,3), label: 'Sept 2025–March 2026 babies',
+      day: 'Saturdays', time: '1:15–2:30 PM', start: 'Sep 19, 2026', end: 'Nov 7, 2026', instructor: 'Stephanie (Curriculum A)' },
+    { program: 'Rising Toddler', sub: '6–12 months', range: months(2025,9,2026,3), label: 'Sept 2025–March 2026 babies',
+      day: 'Saturdays', time: '11:30 AM–12:45 PM', start: 'Sep 19, 2026', end: 'Nov 7, 2026', instructor: 'Stephanie (Curriculum A)' },
+    { program: 'Rising Toddler', sub: '6–12 months', range: months(2025,9,2026,3), label: 'Sept 2025–March 2026 babies',
+      day: 'Thursdays', time: '12:00–1:15 PM', start: 'Sep 24, 2026', end: 'Nov 12, 2026', instructor: 'Laura (Curriculum A)' },
+    { program: 'Rising Toddler', sub: '6–12 months', range: months(2025,10,2026,4), label: 'Oct 2025–April 2026 babies',
+      day: 'Mondays', time: '12:00–1:15 PM', start: 'Oct 19, 2026', end: 'Dec 7, 2026', instructor: 'Abby (Curriculum A)' },
+
+    // Second Time Mom
+    { program: 'Second Time Mom', sub: '0–3 months', range: months(2026,9,2026,11), label: 'Fall 2026 babies',
+      day: 'Thursdays', time: '9:30–11:00 AM', start: 'Nov 12, 2026', end: 'Jan 21, 2027', instructor: 'Ali' },
+  ];
+
+  // Build month picker buttons, Sept 2025 through Nov 2026
+  const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const grid = document.getElementById('monthGrid');
+  const start = {y:2025, m:9}, end = {y:2026, m:11};
+  let y = start.y, m = start.m;
+  while (y < end.y || (y === end.y && m <= end.m)) {
+    const key = y + '-' + m;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'month-btn';
+    btn.dataset.key = key;
+    btn.innerHTML = monthNames[m-1] + '<span class="yr">' + y + '</span>';
+    btn.addEventListener('click', () => {
+      grid.querySelectorAll('.month-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      render(key);
+    });
+    grid.appendChild(btn);
+    m++;
+    if (m > 12) { m = 1; y++; }
+  }
+
+  const programOrder = ['Newborn', 'Infant', 'Rising Toddler', 'Second Time Mom'];
+
+  function render(key) {
+    const results = document.getElementById('results');
+    if (!key) {
+      results.innerHTML = '<p class="empty-state">Choose a birth month above to see your matching classes.</p>';
+      return;
+    }
+
+    const matches = classes.filter(c => c.range.includes(key));
+
+    if (matches.length === 0) {
+      results.innerHTML = '<p class="no-match">No open classes match that birth month right now — email us and we will help you find the right fit or let you know when one opens.</p>';
+      return;
+    }
+
+    let html = '';
+    programOrder.forEach(prog => {
+      const group = matches.filter(c => c.program === prog);
+      if (group.length === 0) return;
+      html += '<div class="program-group">';
+      html += '<h2>' + prog + '</h2>';
+      html += '<p class="program-sub">' + group[0].sub + '</p>';
+      group.forEach(c => {
+        html += '<div class="class-row">';
+        html += '<div class="class-main">';
+        html += '<div class="class-daytime">' + c.day + ' · ' + c.time + '</div>';
+        html += '<div class="class-dates">' + c.start + ' – ' + c.end + '</div>';
+        html += '</div>';
+        html += '<div class="class-instructor"><strong>' + c.instructor.split(' (')[0] + '</strong>' + (c.instructor.includes('(') ? c.instructor.slice(c.instructor.indexOf('(')) : '') + '</div>';
+        html += '</div>';
+      });
+      html += '</div>';
+    });
+
+    results.innerHTML = html;
+  }
+</script>
+</body>
+</html>
